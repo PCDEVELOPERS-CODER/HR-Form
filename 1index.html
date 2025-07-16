@@ -210,47 +210,97 @@
   }
 
   /* 📱 Mobile Responsive Adjustments */
-  @media (max-width: 770px) {
-    .header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    table, thead, tbody, th, td, tr {
-      display: block;
-      width: 100%;
-    }
-
-    tr {
-      margin-bottom: 20px;
-      border: 1px solid #eee;
-      padding: 10px;
-      border-radius: 6px;
-      background-color: #fff;
-    }
-
-    th {
-      background-color: transparent;
-      color: #000;
-      font-weight: bold;
-      padding-top: 10px;
-    }
-
-    td {
-      border: none;
-      padding: 5px 0;
-      font-size: xx-large;
-    }
-
-    button, .clear-btn {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    #signaturePad {
-      height: 120px;
-    }
+ @media (max-width: 770px) {
+  body {
+    font-size: 18px; /* TNPSC-friendly */
+    padding: 10px;
   }
+
+  .container, form {
+    padding: 10px;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+  }
+
+  .header img {
+    width: 60px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  h2, h3 {
+    font-size: 20px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  tr {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  th, td {
+    font-size: 16px;
+    border: none;
+    padding: 6px 0;
+  }
+
+  th {
+    background: none;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  input[type="email"],
+  input[type="file"],
+  select,
+  textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  button, .clear-btn {
+    width: 100%;
+    font-size: 18px;
+    margin-top: 12px;
+  }
+
+  #signaturePad {
+    height: 300px;
+  }
+
+  .signature-preview {
+    height: 150px;
+  }
+}
+
+
 </style>
 
   </head>
