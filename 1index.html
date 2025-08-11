@@ -1,1035 +1,1144 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-    <meta charset="UTF-8">
-    <title>Bio Data Form</title>
-    <style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candidate Application Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+ 
+
+
+  <style>
   * {
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
+body {
+  font-family:  'Inter', sans-serif;
+  margin: -15px;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    padding: 20px;
-    margin: 0;
-  }
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  text-align: center;
+  color: #3f2c1f;
+  margin-top: -32px;
+}
 
-  .container, form {
-    max-width: 1285px;
-    margin: auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-    flex-wrap: wrap;
-  }
-
-  .header img {
-    width: 70px;
-    height: auto;
-  }
-
-  .header h1 {
-    font-size: 24px;
-    margin: 0;
-    color: #2c3e50;
+  form {
+    max-width: 900px;
+    margin: 1rem auto;
+    background: #fffaf0;
+    padding: 2rem 3rem;
+    border: 1px solid #d2c5ab;
+    border-radius: 6px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
   }
 
   h2, h3 {
     text-align: center;
-    margin-top: 30px;
-    color: #2c3e50;
+    font-weight: normal;
+    margin-bottom: 1.5rem;
+    color: #3c2f2f;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    font-size:xx-large;
-    text-align: left;
-    vertical-align: top;
-  }
-
-  th {
-    background-color: #f1f1f1;
-    color: #333;
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #5a4740;
   }
 
   input[type="text"],
-  input[type="date"],
   input[type="number"],
   input[type="email"],
-  input[type="file"],
+  input[type="date"],
   select,
   textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    width: 91%;
+    padding: 0.65rem;
+    font-size: 15px;
+    background: #fffdf7;
+    border: 1px solid #c8bca8;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
   }
 
   textarea {
     resize: vertical;
   }
 
-  label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: block;
-  }
-
-  .required-star {
-    color: red;
-    font-weight: bold;
+  select {
+    background-color: #fffdf7;
   }
 
   button {
-    padding: 12px 30px;
-    font-size: 16px;
-    background-color: #2280e4d5;
+    background-color: #5a4031;
     color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
   }
 
   button:hover {
-    background-color: #0056b3;
-  }
-
-  .clear-btn {
-    background: #ff4d4d;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-
-  .clear-btn:hover {
-    background-color: #cc0000;
-  }
-
-  .submit-btn {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  .add-btn {
-    text-align: right;
-    margin-bottom: 20px;
-  }
-
-  .experience-entry hr {
-    margin: 20px 0;
-  }
-
-  .signature-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  #signaturePad {
-    border: 2px dashed #999;
-    border-radius: 6px;
-    background: #fff;
-    width: 100%;
-    max-width: 400px;
-    height: 150px;
-    cursor: crosshair;
-  }
-
-  .signature-buttons {
-    margin-top: 10px;
-  }
-
-  .signature-preview {
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    padding: 6px;
-    background: #fafafa;
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .signature-preview img {
-    max-height: 100px;
-    display: block;
-    margin: auto;
-  }
-
-  #loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: #007bff;
-    z-index: 9999;
-    font-weight: bold;
-    backdrop-filter: blur(3px);
-  }
-
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    display: none;
-    z-index: 10000;
-  }
-
-  /* 📱 Mobile Responsive Adjustments */
- @media (max-width: 770px) {
-  body {
-    font-size: 18px; /* TNPSC-friendly */
-    padding: 10px;
-  }
-
-  .container, form {
-    padding: 10px;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    text-align: left;
-  }
-
-  .header img {
-    width: 60px;
-  }
-
-  .header h1 {
-    font-size: 22px;
-  }
-
-  h2, h3 {
-    font-size: 20px;
-  }
-
-  .table-wrapper {
-    overflow-x: auto;
-  }
-
-  table, thead, tbody, th, td, tr {
-    display: block;
-    width: 100%;
+    background-color: #3f2c1f;
   }
 
   table {
-    font-size: 16px;
-  }
-
-  tr {
+    width: 100%;
+    border-collapse: collapse;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #fafafa;
+    font-size: 14px;
+    background: #faf6ed;
+    border: 1px solid #d5c7b1;
   }
 
   th, td {
-    font-size: 16px;
-    border: none;
-    padding: 6px 0;
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ccc;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+.experience-section {
+    margin-bottom: 20px;
   }
 
-  th {
+  .experience-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+
+  .experience-card label {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .experience-card input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+
+  .removeRowBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     background: none;
-    font-weight: bold;
-  }
-
-  input[type="text"],
-  input[type="date"],
-  input[type="number"],
-  input[type="email"],
-  input[type="file"],
-  select,
-  textarea {
-    width: 100%;
-    font-size: 16px;
-    padding: 10px;
-  }
-
-  button, .clear-btn {
-    width: 100%;
+    border: none;
     font-size: 18px;
-    margin-top: 12px;
+    color: #d11a2a;
+    cursor: pointer;
   }
 
-  #signaturePad {
-    height: 300px;
+  #addRowBtn {
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0066cc;
   }
 
-  .signature-preview {
-    height: 150px;
+  #totalExperience {
+    width: 100%;
+    padding: 8px;
+    font-weight: bold;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+/* Spinner animation */
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #6b4226;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 20px;
+      padding: 16px;
+    }
+.experience-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 15px;
+      align-items: start;
+      padding-right: 40px;
+    }
+
+    .experience-card input {
+      margin-bottom: 0;
+    }
+
+    .experience-card label {
+      margin-bottom: 2px;
+    }
+
+    .experience-card > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+    form {
+      padding: 1.5rem;
+    }
+
+    table, tbody, tr, td, th {
+      display: block;
+      width: 100%;
+    }
+
+    tr {
+      margin-bottom: 1.5rem;
+      background: #fdfaf4;
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #e0d6c2;
+    }
+
+    td::before {
+      content: attr(data-label);
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      color: #5a4031;
+      margin-bottom: 5px;
+    }
+
+    td label {
+      display: none;
+    }
+
+    button {
+      width: 23%;
+      margin-top: 10px;
+    }
+  
+</style>
+
+
+</head>
+<body>
+  
+
+<form id="candidateForm">
+
+
+    <h1>P&C PROJECST PRIVATE LIMITED</h1>
+            <h2>Application Form</h2>
+
+<!-- Full Name -->
+<label for="full_name">Full Name
+  <input type="text" name="full_name" id="full_name" required>
+</label>
+
+<!-- Year of Birth -->
+<label for="dob_year">Year of Birth
+  <input type="number" name="dob_year" id="dob_year" min="1900" max="2024" required>
+</label>
+
+<!-- Marital Status -->
+<label for="marital_status">Marital Status
+  <select name="marital_status" id="marital_status" onchange="toggleMarriageYear()">
+    <option value="">-- Select --</option>
+    <option value="Single">Single</option>
+    <option value="Married">Married</option>
+  </select>
+</label>
+
+<!-- Marriage Year -->
+<div id="marriageYearField" style="display: none;">
+  <label for="marriage_year">Marriage Year
+    <input type="number" name="marriage_year" id="marriage_year" min="1900" max="2024">
+  </label>
+</div>
+
+<!-- Applied Post -->
+<label for="applied_post">Applied for the Post:
+  <input type="text" name="applied_post" id="applied_post">
+</label>
+
+<!-- Present Address -->
+<label for="present_address">Present Address (with Pincode):
+  <textarea name="present_address" id="present_address" rows="2"></textarea>
+</label>
+
+<!-- Permanent Address -->
+<label for="permanent_address">Permanent Address (with Pincode):
+  <textarea name="permanent_address" id="permanent_address" rows="2"></textarea>
+</label>
+
+<!-- Aadhar Number -->
+<label for="aadhar_no">Aadhar Number:
+  <input type="text" name="aadhar_no" id="aadhar_no">
+</label>
+
+<!-- Phone Number -->
+<label for="phone_no">Phone Number:
+  <input type="number" name="phone_no" id="phone_no">
+</label>
+
+<!-- Experience -->
+<label for="experience_status">Are you Fresher/Experienced *</label>
+<select id="experience_status" name="experience_status" onchange="toggleExperienceTable()" required>
+  <option value="">Select</option>
+  <option value="Fresher">Fresher</option>
+  <option value="Experienced">Experienced</option>
+</select>
+
+<!-- Experience Inputs (only shown if Experienced selected) -->
+<div id="experienceTableContainer" style="display: none; margin-top: 10px;">
+  <div class="experience-table">
+    <label><b>Experience Details</b></label>
+    <div class="input-group">
+      <input type="text" id="designation" placeholder="Designation">
+      <input type="text" id="role" placeholder="Roles & Responsibilities">
+      <input type="number" id="year" class="yearInput" placeholder="Years" min="0" step="0.1">
+    </div>
+    <button type="button" onclick="addExperience()"> Add </button>
+  </div>
+
+  <!-- Experience Preview -->
+  <ul id="experiencePreview" style="margin-top: 10px;"></ul>
+
+  <!-- Total Experience -->
+  <label>Total Experience (in Years):
+    <input type="text" name=total_experience id="totalExperience" readonly style="width: 60px;">
+  </label>
+</div>
+
+<!-- Languages You Speak -->
+<label>Languages You Speak *</label><br>
+<div id="languageSpeakGroup">
+  <input type="checkbox" name="languageSpeak" value="English"> English<br>
+  <input type="checkbox" name="languageSpeak" value="Tamil"> Tamil<br>
+  <input type="checkbox" name="languageSpeak" value="Hindi"> Hindi<br>
+  <input type="checkbox" name="languageSpeak" value="Others" id="langSpeakOthersChk"> Others
+</div>
+<div id="otherSpeakGroup" style="display:none; margin-top:5px;">
+  <label for="otherSpeak">Other Spoken Language:
+    <input type="text" id="otherSpeak" name="otherSpeak">
+  </label>
+</div>
+
+<!-- Languages You Write -->
+<label>Languages You Write *</label><br>
+<div id="languageWriteGroup">
+  <input type="checkbox" name="languageWrite" value="English"> English<br>
+  <input type="checkbox" name="languageWrite" value="Tamil"> Tamil<br>
+  <input type="checkbox" name="languageWrite" value="Hindi"> Hindi<br>
+  <input type="checkbox" name="languageWrite" value="Others" id="langWriteOthersChk"> Others
+</div>
+<div id="otherWriteGroup" style="display:none; margin-top:5px;">
+  <label for="otherWrite">Other Written Language:
+    <input type="text" id="otherWrite" name="otherWrite">
+  </label>
+</div>
+
+<!-- How do you know this company -->
+<label for="knowCompany">How do you know this company? *
+  <input type="text" id="knowCompany" name="knowCompany" required>
+</label>
+
+  <table>
+  <tr>
+    <h3>Education:</h3>
+    <td data-label="Qualification">
+  <label for="qual">Qualification</label>
+  <select id="qual" onchange="updateStreamOptions(); toggleOther(this, 'qual_other'); toggleBoardUniversity()">
+    <option value="">Select</option>
+    <option value="SSLC">SSLC</option>
+    <option value="HSC">HSC</option>
+    <option value="UG">UG</option>
+    <option value="PG">PG</option>
+    <option value="Diploma">Diploma</option>
+    <option value="Other">Other</option>
+  </select>
+  <input type="text" id="qual_other" placeholder="Specify Other" style="display:none">
+</td>
+
+
+    <td data-label="Stream">
+      <label>Stream</label>
+      <select id="stream" onchange="toggleOther(this, 'stream_other')">
+        <option value="">Select</option>
+      </select>
+      <input type="text" id="stream_other" placeholder="Specify Other" style="display:none">
+    </td>
+
+    <td data-label="From">
+      <label>From</label>
+      <input type="text" id="from" placeholder="From Year">
+    </td>
+
+    <td data-label="To">
+      <label>To</label>
+      <input type="text" id="to" placeholder="To Year">
+    </td>
+
+    <td data-label="Medium">
+      <label>Medium</label>
+      <select id="medium" onchange="toggleOther(this, 'medium_other')">
+        <option value="">Select</option>
+        <option value="Tamil">Tamil</option>
+        <option value="English">English</option>
+        <option value="Hindi">Hindi</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="text" id="medium_other" placeholder="Specify Other" style="display:none">
+    </td>
+
+   <td data-label="Board/University">
+  <label for="board">Board</label>
+  <select id="board" onchange="toggleOther(this, 'board_other')">
+    <option value="">Select</option>
+    <option value="CBSE">CBSE</option>
+    <option value="Matric">Matric</option>
+    <option value="State Board">State Board</option>
+    <option value="Other">Other</option>
+  </select>
+  <input type="text" id="board_other" placeholder="Specify Other" style="display:none">
+  <input type="text" id="board_university_input" placeholder="University Name" style="display:none">
+</td>
+
+<td data-label="College/School">
+  <label>College/School</label>
+  <input type="text" id="university" placeholder="College/School">
+</td>
+
+
+    <td data-label="Mode">
+      <label>Mode of Study</label>
+      <select id="mode">
+       
+        <option value="Regular">Regular</option>
+        <option value="Correspondence">Correspondence</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
+  <button type="button" onclick="addEducationPreview()"> +Add</button>
+
+  <h3>Education Preview</h3>
+<div id="educationPreviewContainer"></div>
+
+
+  <h3>Family Details</h3>
+<table id="familyTable">
+  
+  <tbody id="familyBody">
+    <tr>
+      <td data-label="Name"><input type="text" id="fname"></td>
+      <td data-label="Age"><input type="text" id="fage"></td>
+      <td data-label="Relationship"><input type="text" id="frel"></td>
+      <td data-label="Occupation"><input type="text" id="focc"></td>
+      <td data-label="Marital Status"><input type="text" id="fmarital"></td>
+      <td data-label="Location"><input type="text" id="floc"></td>
+      <td data-label="Phone Number"><input type="text" id="fph"></td>
+      <td><button type="button" onclick="addFamilyPreview()"style="min-width: 100px; padding: 6px 12px;">+ Add</button></td>
+    </tr>
+  </tbody>
+</table>
+<div id="familyPreviewContainer"></div>
+
+<h3>Skills</h3>
+<table>
+ 
+ <table>
+  <tbody>
+    <tr>
+      <td data-label="Skill">
+        <label>Skill:</label>
+        <select id="skillSelect" onchange="toggleOtherSkill(this)">
+          <option value="">Select..</option>
+          <option value="Excel">Excel</option>
+          <option value="MS Projects">MS Projects</option>                     
+          <option value="AutoCAD">AutoCAD</option>
+          <option value="Revit">Revit</option>
+          <option value="Primavera">Primavera</option>
+          <option value="DIMS">DIMS</option>
+          <option value="E-Tabs">E-Tabs</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="otherSkill" placeholder="Specify Other" style="display:none;">
+      </td>
+      <td data-label="Proficiency">
+        <label>Proficiency:</label>
+        <select id="skillProficiency">
+          <option value="Excellent">Excellent</option>
+          <option value="Good">Good</option>
+          <option value="Average">Average</option>
+        </select>
+      </td>
+     <td data-label="Action">
+   <button type="button" onclick="addSkillPreview()" style="min-width: 100px; padding: 6px 12px;">+Add</button>
+     </td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Preview Container -->
+<div id="skillPreviewContainer" style="margin-top: 20px;">
+  <h4>Skills Preview</h4>
+</div>
+<h3>Other Details</h3>
+
+<!-- 1-5 Questions -->
+<label>1. Willing to work anywhere in India?
+  <select name="willing_india" required>
+    <option value="">Select</option>
+    <option>Yes</option><option>No</option>
+  </select>
+</label>
+
+<label>2. Willing to work in Tamil Nadu?
+  <select name="willing_tn" required>
+    <option value="">Select</option>
+    <option>Yes</option><option>No</option>
+  </select>
+</label>
+
+<label>3. Preferred work location:
+  <input type="text" name="preferred_place">
+</label>
+
+<label>4. Will you stay in site camp?
+  <select name="stay_in_camp" required>
+    <option value="">Select</option>
+    <option>Yes</option><option>No</option>
+  </select>
+</label>
+
+<label>5. Vehicle owned:
+  <select name="vehicle_owned" id="vehicle_owned">
+    <option value="">Select</option>
+    <option>Two Wheeler</option>
+    <option>Four Wheeler</option>
+    <option>None</option>
+  </select>
+</label>
+<label id="licenseField" style="display:none;">License Number:
+  <input type="text" name="license_no">
+</label>
+
+<!-- 6-7 Problems -->
+<label>6. Any health problems?
+  <select name="health_problem" id="health_problem">
+    <option value="">Select</option>
+    <option>Yes</option><option>No</option>
+  </select>
+</label>
+<label id="healthDetails" style="display:none;">Specify:
+  <input type="text" name="health_problem_details">
+</label>
+
+<label>7. Physically challenged?
+  <select name="physically_challenged" id="physically_challenged">
+    <option value="">Select</option>
+    <option>Yes</option><option>No</option>
+  </select>
+</label>
+<label id="physicalDetails" style="display:none;">Specify:
+  <input type="text" name="physically_challenged_details">
+</label>
+
+<!-- 8. Reason -->
+<label>8. Reason for leaving previous company:
+  <textarea name="reason_for_leaving" rows="3"></textarea>
+</label>
+
+<!-- 9. References -->
+<h3>9. References</h3>
+<div id="referenceContainer">
+  <div class="referenceRow">
+    <textarea name="reference[]" rows="2" placeholder="Name / Grade / Company / Contact"></textarea>
+  </div>
+</div>
+<button type="button" onclick="addReference()">Add</button>
+<div id="referencePreview" style="margin-top: 10px;"></div>
+
+<!-- 10. Known Person -->
+<h3>10. Known person in P&C</h3>
+<label>Name:
+  <input type="text" name="known_person_name">
+</label>
+
+<label>Relationship:
+  <select name="known_person_relationship" id="known_person_relationship">
+    <option value="">Select</option>
+    <option>Friend</option>
+    <option>Relative</option>
+    <option>Colleague</option>
+  </select>
+</label>
+
+<div id="relativeDetail" style="display:none;">
+  <label>If Relative, specify:
+    <input type="text" name="relative_type">
+  </label>
+</div>
+
+<label>Project they worked in P&C:
+  <input type="text" name="known_person_project">
+</label>
+
+<div style="text-align: center; margin-top: 30px;">
+  <button type="submit" style="padding: 12px 30px; font-size: 16px; width: 220px;">Submit</button>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" style="
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+">
+    <div class="spinner"></div>
+    <div style="margin-top: 15px; font-size: 18px; color: #333;">
+        ⏳ Submitting, please wait...
+    </div>
+</div>
+
+</form>
+
+
+
+<script>
+let educationCount = 0;
+
+const streamOptions = {
+  HSC: ["Commerce", "Bio-Maths", "Computer Science", "Pure Science"],
+  UG: ["B.Com", "B.Sc", "B.E", "BBA"],
+  PG: ["M.Com", "M.Sc", "MBA"],
+  Diploma: ["Civil", "EEE", "CSE"],
+  SSLC: ["General"]
+};
+
+function toggleOther(selectEl, inputId) {
+  const inputEl = document.getElementById(inputId);
+  if (!inputEl) return; // guard
+  inputEl.style.display = selectEl.value === "Other" ? "block" : "none";
+}
+function toggleBoardUniversity() {
+  const qual = document.getElementById("qual").value;
+  const boardSelect = document.getElementById("board");
+  const boardOther = document.getElementById("board_other");
+  const universityInput = document.getElementById("board_university_input"); // updated ID
+  const boardLabel = document.querySelector("label[for='board']");
+
+  if (qual === "SSLC" || qual === "HSC") {
+    boardSelect.style.display = "block";
+    boardOther.style.display = "none";
+    universityInput.style.display = "none";
+    if (boardLabel) boardLabel.innerText = "Board";
+  } else {
+    boardSelect.style.display = "none";
+    boardOther.style.display = "none";
+    universityInput.style.display = "block";
+    if (boardLabel) boardLabel.innerText = "University";
   }
 }
 
 
-</style>
+function updateStreamOptions() {
+  const qualEl = document.getElementById("qual");
+  const streamDropdown = document.getElementById("stream");
+  const otherInput = document.getElementById("stream_other");
+  if (!qualEl || !streamDropdown || !otherInput) return; // guard
 
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <img src="PC.png" alt="P&C Logo">
-       <center><h1>P&C PROJECTS PRIVATE LIMITED</h1></center>
-      </div>
-      <h2>Bio Data of the Applicant</h2>
-      <form id="bioDataForm" novalidate>
-            <table>
-  <tr>
-    <td>Date</td>
-    <td><input type="date" name="date" required></td>
-  </tr>
-  <tr>
-    <td>Applied for the post</td>
-    <td><input type="text" name="post" required></td>
-  </tr>
-  <tr>
-    <td>Name (in capital letters)</td>
-    <td><input type="text" name="name" required></td>
-  </tr>
-  <tr>
-    <td>Date of Birth</td>
-    <td><input type="date" name="dob" required></td>
-  </tr>
-  <tr>
-    <td>Age</td>
-    <td><input type="number" name="age" required></td>
-  </tr>
-  <tr>
-    <td>Gender</td>
-    <td><select name="gender" required><option>Male</option><option>Female</option><option>Other</option></select></td>
-  </tr>
-  <tr>
-    <td>Religion</td>
-    <td><input type="text" name="religion"></td>
-  </tr>
-  <tr>
-    <td>Caste</td>
-    <td><input type="text" name="caste"></td>
-  </tr>
-  <tr>
-    <td>Height (cm)</td>
-    <td><input type="text" name="height"></td>
-  </tr>
-  <tr>
-    <td>Weight (kg)</td>
-    <td><input type="text" name="weight"></td>
-  </tr>
-  <tr>
-    <td>Blood Group</td>
-    <td><input type="text" name="blood_group" required></td>
-  </tr>
-  <tr>
-    <td>Marital Status</td>
-    <td>
-      <select name="marital_status" required>
-        <option>Married</option>
-        <option>Unmarried</option>
-        <option>Widower</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>If Married (Date)</td>
-    <td><input type="date" name="married_date"></td>
-  </tr>
-</table>
+  const qual = qualEl.value;
+  streamDropdown.innerHTML = `<option value="">Select</option>`;
 
-<table>
-  <tr>
-    <th>Languages Known</th>
-    <th>Speak</th>
-    <th>Write</th>
-  </tr>
-  <tr>
-    <td>Languages</td>
-    <td><input type="text" name="speak_languages" required></td>
-    <td><input type="text" name="write_languages"required></td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td>Present Address</td>
-    <td><textarea name="present_address" required></textarea></td>
-  </tr>
-  <tr>
-    <td>Permanent Address</td>
-    <td><textarea name="permanent_address" required></textarea></td>
-  </tr>
-  <tr>
-    <td>Pin Code</td>
-    <td><input type="text" name="present_pincode"></td>
-  </tr>
-  <tr>
-    <td>Phone</td>
-    <td><input type="text" name="present_phone" required></td>
-  </tr>
-  <tr>
-    <td>Email ID</td>
-    <td><input type="email" name="email" required></td>
-  </tr>
-  <tr>
-    <td>Aadhar No</td>
-    <td><input type="text" name="aadhar" required></td>
-  </tr>
-  <tr>
-    <td>Emergency Contact Phone No</td>
-    <td><input type="text" name="emergency_phone"></td>
-  </tr>
-  <tr>
-    <td>Name & Relationship</td>
-    <td><input type="text" name="emergency_name"></td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td>ESI No</td>
-    <td><input type="text" name="esi_no"></td>
-    <td>EPF UAN No</td>
-    <td><input type="text" name="epf_no"></td>
-  </tr>
-</table>
-<h3>Educational Qualification</h3>
-<table>
-  <tr>
-    <th rowspan="2">Educational Qualification</th>
-    <th colspan="2">Period of Study</th>
-    <th rowspan="2">Marks %</th>
-    <th colspan="3">Medium</th>
-    <th rowspan="2">Institution name & Location</th>
-  </tr>
-  <tr>
-    <th>From</th>
-    <th>To</th>
-    <th>English</th>
-    <th>Tamil</th>
-    <th>Correspondence</th>
-  </tr>
-
-  <!-- SSLC -->
-  <tr>
-    <td>SSLC / HSC </td>
-    <td><input type="text" name="sslc_from" required></td>
-    <td><input type="text" name="sslc_to"></td>
-    <td><input type="text" name="sslc_marks"></td>
-    <td><input type="checkbox" name="sslc_english"></td>
-    <td><input type="checkbox" name="sslc_tamil"></td>
-    <td><input type="checkbox" name="sslc_corres"></td>
-    <td><input type="text" name="sslc_inst"></td>
-  </tr>
-
-  <!-- Diploma -->
-  <tr>
-    <td>Diploma</td>
-    <td><input type="text" name="dip_from"></td>
-    <td><input type="text" name="dip_to"></td>
-    <td><input type="text" name="dip_marks"></td>
-    <td><input type="checkbox" name="dip_english"></td>
-    <td><input type="checkbox" name="dip_tamil"></td>
-    <td><input type="checkbox" name="dip_corres"></td>
-    <td><input type="text" name="dip_inst"></td>
-  </tr>
-
-  <!-- UG -->
-  <tr>
-    <td>UG</td>
-    <td><input type="text" name="ug_from" required></td>
-    <td><input type="text" name="ug_to"></td>
-    <td><input type="text" name="ug_marks"></td>
-    <td><input type="checkbox" name="ug_english"></td>
-    <td><input type="checkbox" name="ug_tamil"></td>
-    <td><input type="checkbox" name="ug_corres"></td>
-    <td><input type="text" name="ug_inst"></td>
-  </tr>
-
-  <!-- PG -->
-  <tr>
-    <td>PG</td>
-    <td><input type="text" name="pg_from"></td>
-    <td><input type="text" name="pg_to"></td>
-    <td><input type="text" name="pg_marks"></td>
-    <td><input type="checkbox" name="pg_english"></td>
-    <td><input type="checkbox" name="pg_tamil"></td>
-    <td><input type="checkbox" name="pg_corres"></td>
-    <td><input type="text" name="pg_inst"></td>
-  </tr>
-
-  <!-- Other Course -->
-  <tr>
-    <td>Other Course</td>
-    <td><input type="text" name="other_from"></td>
-    <td><input type="text" name="other_to"></td>
-    <td><input type="text" name="other_marks"></td>
-    <td><input type="checkbox" name="other_english"></td>
-    <td><input type="checkbox" name="other_tamil"></td>
-    <td><input type="checkbox" name="other_corres"></td>
-    <td><input type="text" name="other_inst"></td>
-  </tr>
-</table>
-
-<h3>Soft Skills</h3>
-<table border="1" cellpadding="6" cellspacing="0" style="width: 100%; border-collapse: collapse;">
-  <tr>
-    <th>Skill</th>
-    <th>Excellent</th>
-    <th>Good</th>
-    <th>Average</th>
-    <th>Only Learned</th>
-    <th>Unknown</th>
-    <th>Professional Exp: Yes / No</th>
-    <th>Years</th>
-  </tr>
-
-  <!-- Row 1 -->
-  <tr>
-    <td>MS Excel working Skill</td>
-    <td><input type="checkbox" name="excel_excellent"></td>
-    <td><input type="checkbox" name="excel_good"></td>
-    <td><input type="checkbox" name="excel_average"></td>
-    <td><input type="checkbox" name="excel_learned"></td>
-    <td><input type="checkbox" name="excel_unknown"></td>
-    <td>
-      <select name="excel_exp">
-        <option value="">--Select--</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </td>
-    <td><input type="number" name="excel_years" min="0" style="width: 60px;"></td>
-  </tr>
-
-  <!-- Row 2 -->
-  <tr>
-    <td>ACAD</td>
-    <td><input type="checkbox" name="acad_excellent"></td>
-    <td><input type="checkbox" name="acad_good"></td>
-    <td><input type="checkbox" name="acad_average"></td>
-    <td><input type="checkbox" name="acad_learned"></td>
-    <td><input type="checkbox" name="acad_unknown"></td>
-    <td>
-      <select name="acad_exp">
-        <option value="">--Select--</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </td>
-    <td><input type="number" name="acad_years" min="0" style="width: 60px;"></td>
-  </tr>
-
-  <!-- Row 3 -->
-  <tr>
-    <td>Typing Skill: English/Tamil</td>
-    <td><input type="checkbox" name="typing_excellent"></td>
-    <td><input type="checkbox" name="typing_good"></td>
-    <td><input type="checkbox" name="typing_average"></td>
-    <td><input type="checkbox" name="typing_learned"></td>
-    <td><input type="checkbox" name="typing_unknown"></td>
-    <td>
-      <select name="typing_exp">
-        <option value="">--Select--</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </td>
-    <td><input type="number" name="typing_years" min="0" style="width: 60px;"></td>
-  </tr>
-
-  <!-- Row 4 -->
-  <tr>
-    <td>General Knowledge</td>
-    <td><input type="checkbox" name="gk_excellent"></td>
-    <td><input type="checkbox" name="gk_good"></td>
-    <td><input type="checkbox" name="gk_average"></td>
-    <td><input type="checkbox" name="gk_learned"></td>
-    <td><input type="checkbox" name="gk_unknown"></td>
-    <td>
-      <select name="gk_exp">
-        <option value="">--Select--</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </td>
-    <td><input type="number" name="gk_years" min="0" style="width: 60px;"></td>
-  </tr>
-</table>
-<!-- 2nd page-->
-<!-- 2nd page -->
-<h3>Other Details</h3>
-<table>
-  <tr>
-    <th>Are you willing to work anywhere in India / TN / At particular place</th>
-    <td><input type="text" name="work_location_preference" /></td>
-  </tr>
-  <tr>
-    <th>Will you stay in site camp?</th>
-    <td><input type="text" name="site_camp" /></td>
-  </tr>
-  <tr>
-    <th>What Vehicle owned by you<br>(Two wheeler / Four wheeler)</th>
-    <td>
-      <input type="text" name="vehicle_owned" />
-      &nbsp;&nbsp;License No: <input type="text" name="license_no" />
-    </td>
-  </tr>
-  <tr>
-    <th>Do you have any health problems / Complaints / Physically Challenged?</th>
-    <td><input type="text" name="health_issues" /></td>
-  </tr>
-  <tr>
-    <th>Present Employer, Location & Post</th>
-    <td><input type="text" name="current_employer" /></td>
-  </tr>
-  <tr>
-    <th>Reason for leaving the present employment</th>
-    <td><input type="text" name="reason_for_leaving" /></td>
-  </tr>
-  <tr>
-    <th>How do you know this company?</th>
-    <td><input type="text" name="know_company" /></td>
-  </tr>
-  <tr>
-    <th>Give any two references<br>Name / Grade / Designation / Company / Contact Phone No</th>
-    <td>
-      1) <input type="text" name="reference1" style="width: 100%;" /><br><br>
-      2) <input type="text" name="reference2" style="width: 100%;" />
-    </td>
-  </tr>
-</table>
-
-<h3>Family Details</h3>
-<table>
-  <tr>
-    <th>Sl.</th>
-    <th>Name</th>
-    <th>Age</th>
-    <th>Relationship</th>
-    <th>Marital Status</th>
-    <th>Occupation</th>
-    <th>Location</th>
-    <th>Ph. Number</th>
-  </tr>
-  <tr><td>1</td><td><input type="text" name="fam_name_1"></td><td><input type="text" name="fam_age_1"></td><td><input type="text" name="fam_relationship_1"></td><td><input type="text" name="fam_status_1"></td><td><input type="text" name="fam_occupation_1"></td><td><input type="text" name="fam_location_1"></td><td><input type="text" name="fam_phone_1"></td></tr>
-  <tr><td>2</td><td><input type="text" name="fam_name_2"></td><td><input type="text" name="fam_age_2"></td><td><input type="text" name="fam_relationship_2"></td><td><input type="text" name="fam_status_2"></td><td><input type="text" name="fam_occupation_2"></td><td><input type="text" name="fam_location_2"></td><td><input type="text" name="fam_phone_2"></td></tr>
-  <tr><td>3</td><td><input type="text" name="fam_name_3"></td><td><input type="text" name="fam_age_3"></td><td><input type="text" name="fam_relationship_3"></td><td><input type="text" name="fam_status_3"></td><td><input type="text" name="fam_occupation_3"></td><td><input type="text" name="fam_location_3"></td><td><input type="text" name="fam_phone_3"></td></tr>
-  <tr><td>4</td><td><input type="text" name="fam_name_4"></td><td><input type="text" name="fam_age_4"></td><td><input type="text" name="fam_relationship_4"></td><td><input type="text" name="fam_status_4"></td><td><input type="text" name="fam_occupation_4"></td><td><input type="text" name="fam_location_4"></td><td><input type="text" name="fam_phone_4"></td></tr>
-  <tr><td>5</td><td><input type="text" name="fam_name_5"></td><td><input type="text" name="fam_age_5"></td><td><input type="text" name="fam_relationship_5"></td><td><input type="text" name="fam_status_5"></td><td><input type="text" name="fam_occupation_5"></td><td><input type="text" name="fam_location_5"></td><td><input type="text" name="fam_phone_5"></td></tr>
-  <tr><td>6</td><td><input type="text" name="fam_name_6"></td><td><input type="text" name="fam_age_6"></td><td><input type="text" name="fam_relationship_6"></td><td><input type="text" name="fam_status_6"></td><td><input type="text" name="fam_occupation_6"></td><td><input type="text" name="fam_location_6"></td><td><input type="text" name="fam_phone_6"></td></tr>
-  <tr><td>7</td><td><input type="text" name="fam_name_7"></td><td><input type="text" name="fam_age_7"></td><td><input type="text" name="fam_relationship_7"></td><td><input type="text" name="fam_status_7"></td><td><input type="text" name="fam_occupation_7"></td><td><input type="text" name="fam_location_7"></td><td><input type="text" name="fam_phone_7"></td></tr>
-  <tr><td>8</td><td><input type="text" name="fam_name_8"></td><td><input type="text" name="fam_age_8"></td><td><input type="text" name="fam_relationship_8"></td><td><input type="text" name="fam_status_8"></td><td><input type="text" name="fam_occupation_8"></td><td><input type="text" name="fam_location_8"></td><td><input type="text" name="fam_phone_8"></td></tr>
-</table>
-
-<h3>Details of Recommendation</h3>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Relative / Friends / Colleagues / Occupation of referer</th>
-    <th>Mobile No</th>
-  </tr>
-  <tr>
-    <td><input type="text" name="recommend_name1"></td>
-    <td><input type="text" name="recommend_relation1"></td>
-    <td><input type="text" name="recommend_mobile1"></td>
-  </tr>
-  <tr>
-    <td><input type="text" name="recommend_name2"></td>
-    <td><input type="text" name="recommend_relation2"></td>
-    <td><input type="text" name="recommend_mobile2"></td>
-  </tr>
-</table>
-
-
-
-<table class="noborder" style="width: 100%;">
-  <tr>
-    <td style="width: 50%;">Place: <input type="text" name="place"></td>
-    
-  </tr>
-  <tr>
-    <td>Date: <input type="date" name="signed_date"></td>
-         <td>Are You Fresher</td>
-<td>
-  <select name="fresher" required>
-    <option value="YES">YES</option>
-    <option value="NO">NO</option>
-  </select>
-</td>
-    <td></td>
-  </tr>
-</table>
-<h3 id="experience-header">Employment & Experience Details (in Reverse Chronological Order)</h3>
-
-<div id="experience-section" >
-  <div class="experience-entry">
-    <table>
-      <tr>
-        <th colspan="2">1. Previous Company name & Head Office Location</th>
-        <td colspan="4"><input type="text" name="prev_company[]" required/></td>
-      </tr>
-      <tr>
-        <th colspan="2">2. Project name & Location</th>
-        <td colspan="4"><input type="text" name="project_name[]"required /></td>
-      </tr>
-      <tr>
-        <th colspan="2">3. Project Value (crores)</th>
-        <td colspan="4"><input type="text" name="project_value[]" /></td>
-      </tr>
-      <tr>
-        <th colspan="2">4. Designation</th>
-        <td colspan="4"><input type="text" name="designation[]" required/></td>
-      </tr>
-      <tr>
-        <th colspan="2">5. Roles & Responsibility</th>
-        <td colspan="4"><textarea name="responsibility[]" rows="3" style="width:100%" required></textarea></td>
-      </tr>
-      <tr>
-        <th colspan="2">6. Working Period</th>
-        <td>From: <input type="date" name="work_from[]" required/></td>
-        <td>To: <input type="date" name="work_to[]" required/></td>
-        <td colspan="2">Total: <input type="text" name="work_total_years[]" style="width:50px" required/> Years</td>
-      </tr>
-    </table>
-    <hr>
-  </div>
-</div>
-
-<div style="margin-bottom: 20px; text-align: right;">
-  <button type="button" onclick="addExperience()">➕ Add More Experience</button>
-</div>
-
-<div class="signature-container">
-  <label for="signaturePad">Draw Your Signature:</label>
-  <canvas id="signaturePad" width="300" height="120" required></canvas>
-
-  <div class="signature-buttons">
-    <button type="button" onclick="clearSignature()" class="clear-btn">🧹 Clear</button>
-  </div>
-
-  <input type="hidden" name="signatureData" id="signatureData">
-
-  <div class="signature-preview">
-    <img id="signatureImage" alt="Signature Preview" />
-  </div>
-</div>
-
-
-
-
-
-
-
-        <div class="submit-btn">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <div id="loading" style="display:none;">Uploading...</div>
-      <div id="response" style="margin-top: 20px;"></div>
-    </div>
-
- <script>
-  // 🖊️ Signature Drawing Logic
- 
-  const canvas = document.getElementById('signaturePad');
-  const ctx = canvas.getContext('2d');
-  let isDrawing = false;
-
-  // Resize canvas to fit device pixel ratio
-  function resizeCanvas() {
-    const ratio = window.devicePixelRatio || 1;
-    const width = canvas.offsetWidth;
-    const height = canvas.offsetHeight;
-    canvas.width = width * ratio;
-    canvas.height = height * ratio;
-    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  if (streamOptions[qual]) {
+    streamOptions[qual].forEach(option => {
+      const opt = document.createElement("option");
+      opt.value = option;
+      opt.textContent = option;
+      streamDropdown.appendChild(opt);
+    });
   }
 
-  resizeCanvas();
+  const otherOpt = document.createElement("option");
+  otherOpt.value = "Other";
+  otherOpt.textContent = "Other";
+  streamDropdown.appendChild(otherOpt);
 
-  function getXY(e) {
-    const rect = canvas.getBoundingClientRect();
-    if (e.touches) {
-      return {
-        x: e.touches[0].clientX - rect.left,
-        y: e.touches[0].clientY - rect.top
-      };
+  streamDropdown.value = "";
+  otherInput.value = "";
+  otherInput.style.display = "none";
+}
+
+function addEducationPreview() {
+  const qual = document.getElementById("qual").value === "Other"
+    ? document.getElementById("qual_other").value
+    : document.getElementById("qual").value;
+
+  const stream = document.getElementById("stream").value === "Other"
+    ? document.getElementById("stream_other").value
+    : document.getElementById("stream").value;
+
+  const medium = document.getElementById("medium").value === "Other"
+    ? document.getElementById("medium_other").value
+    : document.getElementById("medium").value;
+
+  let boardOrUniversity = "";
+  if (qual === "SSLC" || qual === "HSC") {
+    boardOrUniversity = document.getElementById("board").value === "Other"
+      ? document.getElementById("board_other").value
+      : document.getElementById("board").value;
+  } else {
+    boardOrUniversity = document.getElementById("board_university_input").value;
+  }
+
+  const from = document.getElementById("from").value;
+  const to = document.getElementById("to").value;
+  const collegeSchool = document.getElementById("university").value;
+  const mode = document.getElementById("mode").value;
+
+  if (!qual || !stream || !from || !to || !medium || !boardOrUniversity || !collegeSchool || !mode) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  educationCount++;
+  const container = document.getElementById("educationPreviewContainer");
+  const line = document.createElement("div");
+  line.className = "edu-preview-line";
+  line.innerHTML = `
+    <strong>${educationCount}.</strong> 
+    ${escapeHtml(qual)} - ${escapeHtml(stream)} - ${escapeHtml(from)} to ${escapeHtml(to)} - 
+    ${escapeHtml(medium)} - ${escapeHtml(boardOrUniversity)} - ${escapeHtml(mode)} - ${escapeHtml(collegeSchool)}
+    <button type="button" onclick="this.parentElement.remove(); renumberEducation()">❌</button>
+  `;
+  container.appendChild(line);
+
+  // Reset inputs
+  document.getElementById("qual").value = "";
+  const qo = document.getElementById("qual_other"); if (qo) { qo.value = ""; qo.style.display = "none"; }
+
+  document.getElementById("stream").value = "";
+  const so = document.getElementById("stream_other"); if (so) { so.value = ""; so.style.display = "none"; }
+
+  document.getElementById("from").value = "";
+  document.getElementById("to").value = "";
+
+  document.getElementById("medium").value = "";
+  const mo = document.getElementById("medium_other"); if (mo) { mo.value = ""; mo.style.display = "none"; }
+
+  document.getElementById("board").value = "";
+  const bo = document.getElementById("board_other"); if (bo) { bo.value = ""; bo.style.display = "none"; }
+  document.getElementById("board_university_input").value = "";
+
+  document.getElementById("university").value = "";
+  document.getElementById("mode").value = "";
+}
+
+
+function renumberEducation() {
+  const lines = document.querySelectorAll('#educationPreviewContainer .edu-preview-line');
+  educationCount = 0;
+  lines.forEach((line, index) => {
+    educationCount++;
+    const strong = line.querySelector("strong");
+    if (strong) strong.innerText = `${index + 1}.`;
+  });
+}
+
+// Toggle experience table based on selection
+function toggleExperienceTable() {
+    const statusEl = document.getElementById("experience_status");
+    const container = document.getElementById("experienceTableContainer");
+    if (!statusEl || !container) return;
+    const status = statusEl.value;
+    container.style.display = (status === "Experienced") ? "block" : "none";
+    if (status !== "Experienced") {
+        const ep = document.getElementById("experiencePreview"); if (ep) ep.innerHTML = "";
+        const te = document.getElementById("totalExperience"); if (te) te.value = "";
+    }
+}
+function addExperience() {
+    const company = document.getElementById("designation").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const years = document.getElementById("year").value.trim();
+
+    if (company && role && years) {
+        const li = document.createElement("li");
+        li.innerHTML = `${escapeHtml(company)} - ${escapeHtml(role)} (<span class="yearVal">${escapeHtml(years)}</span> yrs)
+            <button type="button" onclick="removeExperience(this)">❌</button>`;
+        document.getElementById("experiencePreview").appendChild(li);
+
+        calculateTotalExperience();
+
+        // ✅ Reset fields after adding
+        document.getElementById("designation").value = "";
+        document.getElementById("role").value = "";
+        document.getElementById("year").value = "";
     } else {
-      return {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-      };
+        alert("Please fill in all experience fields");
+    }
+}
+
+
+
+// Remove experience entry
+function removeExperience(btn) {
+    btn.parentElement.remove();
+    calculateTotalExperience();
+}
+
+// Calculate total experience years
+function calculateTotalExperience() {
+    let total = 0;
+    document.querySelectorAll("#experiencePreview .yearVal").forEach(el => {
+        total += parseFloat(el.textContent) || 0;
+    });
+    const te = document.getElementById("totalExperience"); if (te) te.value = total.toFixed(1);
+}
+
+
+ 
+  // Show/Hide Other Language - Speak
+  // moved into DOMContentLoaded to avoid null errors
+
+// Family Preview
+let familyCount = 0;
+
+function addFamilyPreview() {
+  const name = document.getElementById("fname").value;
+  const age = document.getElementById("fage").value;
+  const rel = document.getElementById("frel").value;
+  const occ = document.getElementById("focc").value;
+  const marital = document.getElementById("fmarital").value;
+  const loc = document.getElementById("floc").value;
+  const ph = document.getElementById("fph").value;
+
+  if (!name || !age || !rel || !occ || !marital || !loc || !ph) {
+    alert("Please fill in all family fields.");
+    return;
+  }
+
+  familyCount++;
+  const container = document.getElementById("familyPreviewContainer");
+  const line = document.createElement("div");
+  line.className = "edu-preview-line";
+  line.innerHTML = `\n    <strong>${familyCount}.</strong> ${escapeHtml(name)}, ${escapeHtml(age)} yrs, ${escapeHtml(rel)}, ${escapeHtml(occ)}, ${escapeHtml(marital)}, ${escapeHtml(loc)}, 📞 ${escapeHtml(ph)}\n    <button type="button" onclick="this.parentElement.remove(); renumberFamily()">❌</button>\n  `;
+  container.appendChild(line);
+
+  document.getElementById("fname").value = "";
+  document.getElementById("fage").value = "";
+  document.getElementById("frel").value = "";
+  document.getElementById("focc").value = "";
+  document.getElementById("fmarital").value = "";
+  document.getElementById("floc").value = "";
+  document.getElementById("fph").value = "";
+}
+
+function renumberFamily() {
+  const lines = document.querySelectorAll('#familyPreviewContainer .edu-preview-line');
+  familyCount = 0;
+  lines.forEach((line, index) => {
+    familyCount++;
+    const strong = line.querySelector("strong"); if (strong) strong.innerText = `${index + 1}.`;
+  });
+}
+
+// Skill Preview
+let skillCount = 0;
+
+function toggleOtherSkill(select) {
+  const otherInput = document.getElementById("otherSkill");
+  if (!otherInput) return;
+  if (select.value === "Other") {
+    otherInput.style.display = "inline-block";
+  } else {
+    otherInput.style.display = "none";
+    // do not clear value to avoid losing user input accidentally
+  }
+}
+
+function addSkillPreview() {
+  const skillSelect = document.getElementById("skillSelect");
+  const otherSkillInput = document.getElementById("otherSkill");
+  const proficiencySelect = document.getElementById("skillProficiency");
+  if (!skillSelect || !proficiencySelect) return;
+
+  let skill = skillSelect.value;
+  if (skill === "Other") {
+    skill = otherSkillInput.value.trim();
+    if (!skill) {
+      alert("Please enter a skill name for 'Other'");
+      return;
     }
   }
 
-  function startDrawing(e) {
-    isDrawing = true;
-    const { x, y } = getXY(e);
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    e.preventDefault();
+  const proficiency = proficiencySelect.value;
+
+  if (!skill || !proficiency) {
+    alert("Please select a skill and proficiency.");
+    return;
   }
 
-  function draw(e) {
-    if (!isDrawing) return;
-    const { x, y } = getXY(e);
-    ctx.lineTo(x, y);
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    e.preventDefault();
-  }
+  skillCount++;
+  const container = document.getElementById("skillPreviewContainer");
+  const line = document.createElement("div");
+  line.className = "edu-preview-line";
+  line.innerHTML = `\n    <strong>${skillCount}.</strong> <b>${escapeHtml(skill)}</b> - <b>${escapeHtml(proficiency)}</b>\n    <button type="button" onclick="this.parentElement.remove(); renumberSkills()">❌</button>\n  `;
+  container.appendChild(line);
 
-  function stopDrawing(e) {
-    if (!isDrawing) return;
-    isDrawing = false;
-    ctx.beginPath();
-    saveSignatureToForm();
-    e.preventDefault();
-  }
+  // Reset inputs
+  skillSelect.selectedIndex = 0;
+  proficiencySelect.value = "Excellent";
+  if (otherSkillInput) { otherSkillInput.value = ""; otherSkillInput.style.display = "none"; }
+}
 
-  // 🖱️ Mouse events
-  canvas.addEventListener('mousedown', startDrawing);
-  canvas.addEventListener('mousemove', draw);
-  canvas.addEventListener('mouseup', stopDrawing);
-  canvas.addEventListener('mouseleave', stopDrawing);
+function renumberSkills() {
+  const lines = document.querySelectorAll('#skillPreviewContainer .edu-preview-line');
+  skillCount = 0; // RESET before renumbering
 
-  // 📱 Touch events
-  canvas.addEventListener('touchstart', startDrawing, { passive: false });
-  canvas.addEventListener('touchmove', draw, { passive: false });
-  canvas.addEventListener('touchend', stopDrawing, { passive: false });
-
-  // Clear button logic
-  function clearSignature() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    document.getElementById('signatureData').value = '';
-    document.getElementById('signatureImage').src = '';
-  }
-
-  // Save to base64 string
-  function saveSignatureToForm() {
-    const dataURL = canvas.toDataURL('image/png');
-    document.getElementById('signatureData').value = dataURL;
-    document.getElementById('signatureImage').src = dataURL;
-  }
-
-  // Optional: re-resize on window change
-  window.addEventListener("resize", () => {
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    resizeCanvas();
-    ctx.putImageData(imageData, 0, 0);
+  lines.forEach((line, index) => {
+    skillCount++;
+    const strong = line.querySelector("strong"); if (strong) strong.innerText = `${skillCount}.`;
   });
+}
 
+// Reference Preview
+let refCount = 1;
 
+function addReference() {
+  const refs = document.querySelectorAll('textarea[name="reference[]"]');
+  if (!refs || refs.length === 0) return;
+  const lastRef = refs[refs.length - 1];
+  if (!lastRef.value.trim()) {
+    alert("Please fill in the previous reference before adding another.");
+    return;
+  }
 
-  // ⭐ Add red * to fields marked required (auto on load)
-  document.querySelectorAll("tr").forEach(row => {
-    const labelTd = row.cells[0];
-    const inputTd = row.cells[1];
-    if (!labelTd || !inputTd) return;
-    const requiredInput = inputTd.querySelector("input[required], textarea[required], select[required]");
-    if (requiredInput && !labelTd.innerHTML.includes("required-star")) {
-      labelTd.innerHTML += ' <span class="required-star">*</span>';
-    }
+  const refText = lastRef.value.trim();
+  const preview = document.createElement("div");
+  preview.innerHTML = `<strong>${refCount}.</strong> ${escapeHtml(refText)} <button type="button" onclick="this.parentElement.remove(); reindexReferences()">❌</button>`;
+  document.getElementById("referencePreview").appendChild(preview);
+
+  refCount++;
+  lastRef.value = "";
+}
+
+function reindexReferences() {
+  const previews = document.querySelectorAll("#referencePreview div");
+  refCount = 1;
+  previews.forEach((el, idx) => {
+    const strong = el.querySelector("strong"); if (strong) strong.innerText = `${idx + 1}.`;
   });
+}
 
-  // ✅ Form Submit Handling
-  document.getElementById('bioDataForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
+function toggleMarriageYear() {
+  const maritalStatus = document.getElementById("marital_status");
+  const marriageField = document.getElementById("marriageYearField");
+  if (!maritalStatus || !marriageField) return;
+  marriageField.style.display = maritalStatus.value === "Married" ? "block" : "none";
+}
 
-    const form = this;
-    const loading = document.getElementById("loading");
-    loading.style.display = "flex";
+document.addEventListener("DOMContentLoaded", function () {
+    // Initial stream options setup
+    updateStreamOptions();
 
-    // ✅ Check only fields whose labels have the * marker
-    let valid = true;
-    const requiredFields = [];
+    // Conditional field display
+    const maritalEl = document.getElementById("marital_status"); if (maritalEl) maritalEl.addEventListener("change", toggleMarriageYear);
 
-    document.querySelectorAll('tr').forEach(row => {
-      const labelCell = row.cells[0];
-      const inputCell = row.cells[1];
-      if (!labelCell || !inputCell) return;
-      const isRequired = labelCell.innerHTML.includes('required-star');
-      if (!isRequired) return;
-
-      const field = inputCell.querySelector("input, select, textarea");
-      if (!field || field.disabled || field.offsetParent === null) return;
-
-      let isValid = true;
-      if (field.type === "file") {
-        isValid = field.files.length > 0;
-      } else if (field.type === "checkbox" || field.type === "radio") {
-        isValid = field.checked;
-      } else {
-        isValid = field.value.trim() !== "";
-      }
-
-      if (!isValid) {
-        field.style.border = "2px solid red";
-        valid = false;
-      } else {
-        field.style.border = "";
-      }
+    const vehicleEl = document.getElementById("vehicle_owned"); if (vehicleEl) vehicleEl.addEventListener("change", function () {
+        const show = ["Two Wheeler", "Four Wheeler"].includes(this.value);
+        const licenseField = document.getElementById("licenseField"); if (licenseField) licenseField.style.display = show ? "block" : "none";
     });
 
-    if (!valid) {
-      alert("⚠️ Please fill all fields marked with *");
-      loading.style.display = "none";
-      return;
-    } 
+    const healthEl = document.getElementById("health_problem"); if (healthEl) healthEl.addEventListener("change", function () {
+        const healthDetails = document.getElementById("healthDetails"); if (healthDetails) healthDetails.style.display = this.value === "Yes" ? "block" : "none";
+    });
 
-    // Save signature
-    saveSignatureToForm();
+    const physEl = document.getElementById("physically_challenged"); if (physEl) physEl.addEventListener("change", function () {
+        const physicalDetails = document.getElementById("physicalDetails"); if (physicalDetails) physicalDetails.style.display = this.value === "Yes" ? "block" : "none";
+    });
+
+    const knownRelEl = document.getElementById("known_person_relationship"); if (knownRelEl) knownRelEl.addEventListener("change", function () {
+        const relativeDetail = document.getElementById("relativeDetail"); if (relativeDetail) relativeDetail.style.display = this.value === "Relative" ? "block" : "none";
+    });
+
+    // Move language checkbox listeners here to avoid null errors
+    const langSpeakChk = document.getElementById("langSpeakOthersChk");
+    if (langSpeakChk) {
+      langSpeakChk.addEventListener("change", function () {
+        const otherSpeakGroup = document.getElementById("otherSpeakGroup"); if (otherSpeakGroup) otherSpeakGroup.style.display = this.checked ? "block" : "none";
+      });
+    }
+
+    const langWriteChk = document.getElementById("langWriteOthersChk");
+    if (langWriteChk) {
+      langWriteChk.addEventListener("change", function () {
+        const otherWriteGroup = document.getElementById("otherWriteGroup"); if (otherWriteGroup) otherWriteGroup.style.display = this.checked ? "block" : "none";
+      });
+    }
+
+    // Add listener to qual so stream updates on change
+    const qualEl2 = document.getElementById("qual"); if (qualEl2) qualEl2.addEventListener("change", updateStreamOptions);
+
+});
+
+
+// Main form submission
+// Main form submission
+const candidateFormEl = document.getElementById("candidateForm");
+if (candidateFormEl) candidateFormEl.addEventListener("submit", submitCandidateForm);
+
+async function submitCandidateForm(event) {
+    event.preventDefault();
+
+    const form = document.getElementById("candidateForm");
+    if (!form) return;
+    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+
+    // prevent double submit
+    if (submitBtn) { submitBtn.disabled = true; }
+
+    // Show loading overlay
+    document.getElementById("loadingOverlay").style.display = "flex";
+
+    // Helper to get checked values for checkboxes by name
+    function getCheckedValues(name) {
+        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+            .map(el => el.value);
+    }
+
+    // Get selected languages speak
+    let selectedSpeak = getCheckedValues("languageSpeak");
+    const otherSpeakInput = document.getElementById("otherSpeak");
+    const otherSpeakChecked = document.getElementById("langSpeakOthersChk")?.checked;
+    if (otherSpeakChecked && otherSpeakInput?.value.trim() !== "") {
+        selectedSpeak.push(otherSpeakInput.value.trim());
+    }
+    const languageSpeakCombined = selectedSpeak.join(", ");
+
+    // Get selected languages write
+    let selectedWrite = getCheckedValues("languageWrite");
+    const otherWriteInput = document.getElementById("otherWrite");
+    const otherWriteChecked = document.getElementById("langWriteOthersChk")?.checked;
+    if (otherWriteChecked && otherWriteInput?.value.trim() !== "") {
+        selectedWrite.push(otherWriteInput.value.trim());
+    }
+    const languageWriteCombined = selectedWrite.join(", ");
+
+    const formData = new FormData(form);
+
+    // Append dynamic sections
+    formData.append("languageSpeakCombined", languageSpeakCombined);
+    formData.append("languageWriteCombined", languageWriteCombined);
+    formData.append("educationData", JSON.stringify(collectPreviewData("#educationPreviewContainer")));
+    formData.append("experienceData", JSON.stringify(collectPreviewData("#experiencePreview")));
+    formData.append("familyData", JSON.stringify(collectPreviewData("#familyPreviewContainer")));
+    formData.append("skillsData", JSON.stringify(collectPreviewData("#skillPreviewContainer")));
+    formData.append("referencesData", JSON.stringify(collectPreviewData("#referencePreview")));
+
+    // Append conditional fields
+    formData.append("marriageYear", document.getElementById("marriage_year")?.value || "");
+    formData.append("healthProblemDetails", document.getElementById("health_problem_details")?.value || "");
+    formData.append("physicallyChallengedDetails", document.getElementById("physically_challenged_details")?.value || "");
+    formData.append("relativeType", document.getElementById("relative_type")?.value || "");
 
     try {
-      const formData = new FormData(form);
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbx_eKo-M4n9w08UJcE6nwriHTslh395nkeJUnz25oo0nmEgY7MynIb_9LRJt4h-s7zyhg/exec";
 
-      // Clone form for HTML-to-PDF generation
-      const clone = form.cloneNode(true);
-      clone.querySelectorAll('input, select, textarea').forEach(el => {
-        const span = document.createElement('span');
-        if (el.type === 'file') {
-          span.textContent = el.files.length > 0 ? el.files[0].name : 'No file';
-        } else if (el.type === 'checkbox') {
-          span.textContent = el.checked ? '✔️' : '❌';
-        } else {
-          span.textContent = el.value || '—';
+        const response = await fetch(GAS_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+        alert(data.message || "Form submitted successfully!");
+
+        if (data.result === "success") {
+            form.reset();
+            document.querySelectorAll(".preview-container").forEach(c => c.innerHTML = "");
+            educationCount = familyCount = skillCount = 0;
+            refCount = 1;
         }
-        el.parentNode.replaceChild(span, el);
-      });
-
-      // Clean up for PDF
-      clone.querySelectorAll('#signaturePad, #signatureData, button[type="submit"], .clear-btn, label[for="signatureData"]').forEach(el => {
-        if (el) el.remove();
-      });
-
-      const styleBlock = `
-        <style>
-          body { font-family: 'Segoe UI', sans-serif; color: #333; }
-          .header { display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
-          .header img { width: 70px; }
-          h1 { font-size: 24px; margin: 0; color: #2c3e50; }
-          h2 { text-align: center; color: #2c3e50; }
-          table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-          th, td { border: 1px solid #ccc; padding: 8px; vertical-align: top; }
-          th { background: #eee; }
-        </style>
-      `;
-
-      const fullContent = `
-        ${styleBlock}
-        <div class="header">
-          <img src="PC.png" alt="P&C Logo">
-          <h1>P&C PROJECTS PRIVATE LIMITED</h1>
-        </div>
-        <h2>Bio Data of the Applicant</h2>
-        ${clone.innerHTML}
-      `;
-
-      formData.append("formHtml", fullContent);
-
-      // 🔄 POST to your Google Apps Script
-      const response = await fetch("https://script.google.com/macros/s/AKfycbz12G5ekbFtosIEX1FLvPBof2MCAIGj_Ol7l6zQurF7wwiiHk5IPYN1-kOqij7sRti5/exec", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-      if (result.status === "success") {
-        alert("✅ Form submitted successfully!");
-        form.reset();
-        clearSignature();
-      } else {
-        alert("❌ Upload failed: " + result.message);
-      }
-
-    } catch (err) {
-      alert("⚠️ Error: " + err.message);
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("Error submitting form. Please try again.");
     } finally {
-      loading.style.display = "none";
+        // Hide loading overlay
+        document.getElementById("loadingOverlay").style.display = "none";
+        if (submitBtn) { submitBtn.disabled = false; }
     }
-  });
+}
 
-  // ➕ Add More Experience Logic
-  function addExperience() {
-    const container = document.getElementById("experience-section");
-    const firstEntry = container.querySelector(".experience-entry");
-    const newEntry = firstEntry.cloneNode(true);
-    newEntry.querySelectorAll("input, textarea").forEach(el => el.value = "");
-    container.appendChild(newEntry);
-  }
-  // ➕ Add More Experience Logic
-  function addExperience() {
-    const container = document.getElementById("experience-section");
-    const firstEntry = container.querySelector(".experience-entry");
-    const newEntry = firstEntry.cloneNode(true);
-    newEntry.querySelectorAll("input, textarea").forEach(el => el.value = "");
-    container.appendChild(newEntry);
-  }
+// Helper: Collect preview data
+function collectPreviewData(containerSelector) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return [];
 
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const fresherSelect = document.querySelector('select[name="fresher"]');
-    const experienceSection = document.getElementById('experience-section');
-    const experienceHeader = document.getElementById('experience-header');
-    const addExperienceButton = document.querySelector('button[onclick="addExperience()"]');
-
-    // Initial check on load
-    toggleExperienceSection(fresherSelect.value);
-
-    fresherSelect.addEventListener('change', function () {
-      toggleExperienceSection(this.value);
+    const data = [];
+    container.childNodes.forEach(node => {
+        if (node.nodeType === 1) {
+            let text = node.innerText.trim();
+            text = text.replace(/\s*❌.*$/s, "");
+            text = text.replace(/\s+/g, ' ').trim();
+            text = text.replace(/^\d+\.\s*/, '');
+            if (text) data.push(text);
+        }
     });
+    return data;
+}
 
-    function toggleExperienceSection(value) {
-      const shouldHide = value === 'YES';
-      experienceSection.style.display = shouldHide ? 'none' : 'block';
-      experienceHeader.style.display = shouldHide ? 'none' : 'block';
-      addExperienceButton.style.display = shouldHide ? 'none' : 'inline-block';
-    }
-  });
+function escapeHtml(unsafe) {
+    if (unsafe === undefined || unsafe === null) return '';
+    return String(unsafe)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
 
 </script>
- </body>
+
+
+</body>
 </html>
+
 
