@@ -47,13 +47,17 @@ h1 {
     margin-bottom: 1.5rem;
     color: #3c2f2f;
   }
+label {
+  font-family: Arial, sans-serif;
+  font-size: 1.1rem;     /* ~16px – standard mobile readable size */
+  font-weight: 600;
+  display: block;
+  margin: 0.6rem 0 0.3rem;
+  color: #5a4740;
+}
 
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #5a4740;
-  }
+
+
 
   input[type="text"],
   input[type="number"],
@@ -252,17 +256,17 @@ h1 {
 <form id="candidateForm">
 
 
-    <h1>P&C PROJECST PRIVATE LIMITED</h1>
+    <h1>P&C PROJECTS PRIVATE LIMITED</h1>
             <h2>Application Form</h2>
 
 <!-- Full Name -->
 <label for="full_name">Full Name
-  <input type="text" name="full_name" id="full_name" required>
+  <input type="text" name="full_name" id="full_name"  >
 </label>
 
 <!-- Year of Birth -->
 <label for="dob_year">Year of Birth
-  <input type="number" name="dob_year" id="dob_year" min="1900" max="2024" required>
+  <input type="number" name="dob_year" id="dob_year" min="1900" max="2024"  >
 </label>
 
 <!-- Marital Status -->
@@ -286,54 +290,57 @@ h1 {
   <input type="text" name="applied_post" id="applied_post">
 </label>
 
+<!-- Permanent Address -->
+<label for="permanent_address">
+  Permanent Address (with Pincode) :
+ 
+</label>
+<textarea name="permanent_address" id="permanent_address" rows="2"></textarea>
+
 <!-- Present Address -->
-<label for="present_address">Present Address (with Pincode):
-  <textarea name="present_address" id="present_address" rows="2"></textarea>
+<label for="present_address">
+  Present Address (with Pincode):
+   <label style="display: inline-flex; align-items: center; cursor: pointer; font-size: 14px; color:#5a4740;">
+  <input type="checkbox" id="copyAddressBtn" style="margin-right: 6px; accent-color:#5a4740;">
+  Same as Permanent
 </label>
 
-<!-- Permanent Address -->
-<label for="permanent_address">Permanent Address (with Pincode):
-  <textarea name="permanent_address" id="permanent_address" rows="2"></textarea>
 </label>
+<textarea name="present_address" id="present_address" rows="2"></textarea>
+
+<script>
+  document.getElementById("copyAddressBtn").addEventListener("click", function () {
+    let permanent = document.getElementById("permanent_address").value.trim();
+    document.getElementById("present_address").value = permanent;
+  });
+</script>
+
 
 <!-- Aadhar Number -->
-<label for="aadhar_no">Aadhar Number:
-  <input type="text" name="aadhar_no" id="aadhar_no">
-</label>
+<!-- Aadhar Card Upload -->
+
+<label for="aadhar_upload">Aadhar Card Upload: *</label>
+
+<input type="file" 
+
+       name="aadhar_upload" 
+
+       id="aadhar_upload" 
+
+       accept=".pdf,.jpg,.jpeg,.png" 
+
+        >
+
+<small style="font-size:12px; color:gray;">
+
+  (Upload PDF / JPG / PNG)
+
+</small>
 
 <!-- Phone Number -->
-<label for="phone_no">Phone Number:
+<label for="phone_no">Mobile Number:
   <input type="number" name="phone_no" id="phone_no">
 </label>
-
-<!-- Experience -->
-<label for="experience_status">Are you Fresher/Experienced *</label>
-<select id="experience_status" name="experience_status" onchange="toggleExperienceTable()" required>
-  <option value="">Select</option>
-  <option value="Fresher">Fresher</option>
-  <option value="Experienced">Experienced</option>
-</select>
-
-<!-- Experience Inputs (only shown if Experienced selected) -->
-<div id="experienceTableContainer" style="display: none; margin-top: 10px;">
-  <div class="experience-table">
-    <label><b>Experience Details</b></label>
-    <div class="input-group">
-      <input type="text" id="designation" placeholder="Designation">
-      <input type="text" id="role" placeholder="Roles & Responsibilities">
-      <input type="number" id="year" class="yearInput" placeholder="Years" min="0" step="0.1">
-    </div>
-    <button type="button" onclick="addExperience()"> Add </button>
-  </div>
-
-  <!-- Experience Preview -->
-  <ul id="experiencePreview" style="margin-top: 10px;"></ul>
-
-  <!-- Total Experience -->
-  <label>Total Experience (in Years):
-    <input type="text" name=total_experience id="totalExperience" readonly style="width: 60px;">
-  </label>
-</div>
 
 <!-- Languages You Speak -->
 <label>Languages You Speak *</label><br>
@@ -365,9 +372,67 @@ h1 {
 
 <!-- How do you know this company -->
 <label for="knowCompany">How do you know this company? *
-  <input type="text" id="knowCompany" name="knowCompany" required>
+  <input type="text" id="knowCompany" name="knowCompany"  >
 </label>
 
+<!-- Experience -->
+<label for="experience_status">Are you Fresher/Experienced *</label>
+<select id="experience_status" name="experience_status" onchange="toggleExperienceTable()"  >
+  <option value="">Select</option>
+  <option value="Fresher">Fresher</option>
+  <option value="Experienced">Experienced</option>
+</select>
+
+<!-- Experience Inputs (only shown if Experienced selected) -->
+<div id="experienceTableContainer" style="display: none; margin-top: 10px;">
+  <div class="experience-table">
+    <label><b>Experience Details</b></label>
+    <div class="input-group">
+        <input type="text" id="projectname" placeholder="Project Name">
+        <input type="text" id="projectlocation" placeholder="Project Location">
+        <input type="text" id="projectvalue" placeholder="Project Value">
+        <input type="text" id="previouscompany" placeholder="Company Name">
+        <input type="text" id="companyoffice" placeholder="Company Head Office City">
+        <input type="text" id="designation" placeholder="Designation">
+        <input type="text" id="role" placeholder="Roles & Responsibilities">
+
+ <!-- <input type="number" id="year" class="yearInput" placeholder="Years" min="0" step="0.1">-->
+<label for="frommonth">From Year:</label>
+<input type="month" id="frommonth" name="frommonth">
+
+<label for="tomonth">To Year:</label>
+<input type="month" id="tomonth" name="tomonth" onblur="validateMonths()">
+
+<script>
+  function validateMonths() {
+    const fromMonth = document.getElementById("frommonth").value;
+    const toMonth = document.getElementById("tomonth").value;
+
+    if (fromMonth && toMonth && toMonth < fromMonth) {
+      alert("'To Year/Month' cannot be earlier than 'From Year/Month'.");
+      document.getElementById("tomonth").value = "";
+      document.getElementById("tomonth").focus();
+    }
+  }
+</script>
+
+
+
+
+    </div>
+    <button type="button" onclick="addExperience()"> Add </button>
+  </div>
+
+  <!-- Experience Preview -->
+  <ul id="experiencePreview" style="margin-top: 10px;"></ul>
+
+  <!-- Total Experience -->
+  <label>Total Experience (in Years):
+    <input type="text" name=total_experience id="totalExperience" readonly style="width: 60px;">
+  </label>
+</div>
+
+<!-- EDUCATION -->
   <table>
   <tr>
     <h3>Education:</h3>
@@ -386,23 +451,41 @@ h1 {
 </td>
 
 
-    <td data-label="Stream">
-      <label>Stream</label>
+    <td data-label="Specialization">
+      <label>Specialization</label>
       <select id="stream" onchange="toggleOther(this, 'stream_other')">
         <option value="">Select</option>
       </select>
       <input type="text" id="stream_other" placeholder="Specify Other" style="display:none">
     </td>
 
+
+
     <td data-label="From">
-      <label>From</label>
-      <input type="text" id="from" placeholder="From Year">
+      <label>From Year</label>
+      <input type="number" id="from" name="from" placeholder="YYYY" min="1900" max="2100"  >
     </td>
 
     <td data-label="To">
-      <label>To</label>
-      <input type="text" id="to" placeholder="To Year">
+      <label>To Year</label>
+      <input type="number" id="to" name="to" placeholder="YYYY" min="1900" max="2100"   
+             onblur="validateYears()">
     </td>
+<script>
+  function validateYears() {
+    const fromYear = parseInt(document.getElementById("from").value);
+    const toYear = parseInt(document.getElementById("to").value);
+
+    if (fromYear && toYear && toYear < fromYear) {
+      alert("'To Year' cannot be less than 'From Year'.");
+      document.getElementById("to").value = "";
+      document.getElementById("to").focus(); // move cursor back
+    }
+  }
+</script>
+
+
+
 
     <td data-label="Medium">
       <label>Medium</label>
@@ -423,6 +506,10 @@ h1 {
     <option value="CBSE">CBSE</option>
     <option value="Matric">Matric</option>
     <option value="State Board">State Board</option>
+     <option value="ICSE">ICSE</option>
+      <option value="IB">IB</option>
+       <option value="IGCSE">IGCSE</option>
+        <option value="NIOS">NIOS</option>
     <option value="Other">Other</option>
   </select>
   <input type="text" id="board_other" placeholder="Specify Other" style="display:none">
@@ -438,7 +525,7 @@ h1 {
     <td data-label="Mode">
       <label>Mode of Study</label>
       <select id="mode">
-       
+         <option value="">Select</option>
         <option value="Regular">Regular</option>
         <option value="Correspondence">Correspondence</option>
       </select>
@@ -457,20 +544,21 @@ h1 {
   
   <tbody id="familyBody">
     <tr>
+      <td data-label="Relationship"><input type="text" id="frel"></td>
       <td data-label="Name"><input type="text" id="fname"></td>
       <td data-label="Age"><input type="text" id="fage"></td>
-      <td data-label="Relationship"><input type="text" id="frel"></td>
       <td data-label="Occupation"><input type="text" id="focc"></td>
+
       <td data-label="Marital Status"><input type="text" id="fmarital"></td>
-      <td data-label="Location"><input type="text" id="floc"></td>
-      <td data-label="Phone Number"><input type="text" id="fph"></td>
+      <td data-label="House Location"><input type="text" id="floc"></td>
+      <td data-label="Mobile Number"><input type="text" id="fph"></td>
       <td><button type="button" onclick="addFamilyPreview()"style="min-width: 100px; padding: 6px 12px;">+ Add</button></td>
     </tr>
   </tbody>
 </table>
 <div id="familyPreviewContainer"></div>
 
-<h3>Skills</h3>
+<h3> Soft Skills</h3>
 <table>
  
  <table>
@@ -481,12 +569,17 @@ h1 {
         <select id="skillSelect" onchange="toggleOtherSkill(this)">
           <option value="">Select..</option>
           <option value="Excel">Excel</option>
+           <option value="AutoCAD">AutoCAD</option>
+            <option value="Sketching">Sketching</option>
           <option value="MS Projects">MS Projects</option>                     
-          <option value="AutoCAD">AutoCAD</option>
-          <option value="Revit">Revit</option>
-          <option value="Primavera">Primavera</option>
-          <option value="DIMS">DIMS</option>
-          <option value="E-Tabs">E-Tabs</option>
+         <option value="Primavera">Primavera</option>
+         <option value="staad">STAAD</option>
+         <option value="E-Tabs">E-Tabs</option>
+         <option value="BIMS">BIMS</option>
+         <option value="Revit">Revit</option>
+           <option value="Surveying">Surveying</option>
+            <option value="Using Auto Level">Using Auto Level</option>
+             <option value="Revit">Total Station Operation</option>
           <option value="Other">Other</option>
         </select>
         <input type="text" id="otherSkill" placeholder="Specify Other" style="display:none;">
@@ -516,14 +609,14 @@ h1 {
 
 <!-- 1-5 Questions -->
 <label>1. Willing to work anywhere in India?
-  <select name="willing_india" required>
+  <select name="willing_india"  >
     <option value="">Select</option>
     <option>Yes</option><option>No</option>
   </select>
 </label>
 
 <label>2. Willing to work in Tamil Nadu?
-  <select name="willing_tn" required>
+  <select name="willing_tn"  >
     <option value="">Select</option>
     <option>Yes</option><option>No</option>
   </select>
@@ -534,7 +627,7 @@ h1 {
 </label>
 
 <label>4. Will you stay in site camp?
-  <select name="stay_in_camp" required>
+  <select name="stay_in_camp"  >
     <option value="">Select</option>
     <option>Yes</option><option>No</option>
   </select>
@@ -579,17 +672,30 @@ h1 {
 </label>
 
 <!-- 9. References -->
-<h3>9. References</h3>
+<label>9. References:</label>
+
 <div id="referenceContainer">
+
   <div class="referenceRow">
-    <textarea name="reference[]" rows="2" placeholder="Name / Grade / Company / Contact"></textarea>
+
+    <textarea name="ref_name[]" rows="2" placeholder="Name"></textarea>
+
+    <textarea name="ref_company[]" rows="2" placeholder="Company"></textarea>
+
+    <textarea name="ref_designation[]" rows="2" placeholder="Designation"></textarea>
+
+    <textarea name="ref_contact[]" rows="2" placeholder="Contact No"></textarea>
+
   </div>
+
 </div>
+
 <button type="button" onclick="addReference()">Add</button>
+
 <div id="referencePreview" style="margin-top: 10px;"></div>
 
 <!-- 10. Known Person -->
-<h3>10. Known person in P&C</h3>
+<h3>10. Known person in P&C Group</h3>
 <label>Name:
   <input type="text" name="known_person_name">
 </label>
@@ -613,6 +719,21 @@ h1 {
   <input type="text" name="known_person_project">
 </label>
 
+<!-- Resume Upload -->
+
+<label for="resume_upload">Upload Your Resume: *
+
+  <input type="file" name="resume_upload" id="resume_upload" 
+
+         accept=".pdf,.doc,.docx"  >
+
+</label>
+
+<small style="font-size: 12px; color: #666;">
+
+  (Accepted formats: PDF, DOC, DOCX)
+
+</small>
 <div style="text-align: center; margin-top: 30px;">
   <button type="submit" style="padding: 12px 30px; font-size: 16px; width: 220px;">Submit</button>
 </div>
@@ -644,11 +765,12 @@ h1 {
 let educationCount = 0;
 
 const streamOptions = {
+  SSLC:["1ST","2nd","3rd","4th","5th","6th","7th","8th","9th","10th"],
   HSC: ["Commerce", "Bio-Maths", "Computer Science", "Pure Science"],
   UG: ["B.Com", "B.Sc", "B.E", "BBA"],
   PG: ["M.Com", "M.Sc", "MBA"],
-  Diploma: ["Civil", "EEE", "CSE"],
-  SSLC: ["General"]
+  Diploma: ["Civil", "EEE", "CSE"]
+  
 };
 
 function toggleOther(selectEl, inputId) {
@@ -793,47 +915,89 @@ function toggleExperienceTable() {
         const te = document.getElementById("totalExperience"); if (te) te.value = "";
     }
 }
-function addExperience() {
-    const company = document.getElementById("designation").value.trim();
-    const role = document.getElementById("role").value.trim();
-    const years = document.getElementById("year").value.trim();
-
-    if (company && role && years) {
-        const li = document.createElement("li");
-        li.innerHTML = `${escapeHtml(company)} - ${escapeHtml(role)} (<span class="yearVal">${escapeHtml(years)}</span> yrs)
-            <button type="button" onclick="removeExperience(this)">❌</button>`;
-        document.getElementById("experiencePreview").appendChild(li);
-
-        calculateTotalExperience();
-
-        // ✅ Reset fields after adding
-        document.getElementById("designation").value = "";
-        document.getElementById("role").value = "";
-        document.getElementById("year").value = "";
-    } else {
-        alert("Please fill in all experience fields");
-    }
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, function(m) {
+    return ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    })[m];
+  });
 }
 
-
-
-// Remove experience entry
-function removeExperience(btn) {
-    btn.parentElement.remove();
-    calculateTotalExperience();
-}
-
-// Calculate total experience years
 function calculateTotalExperience() {
-    let total = 0;
-    document.querySelectorAll("#experiencePreview .yearVal").forEach(el => {
-        total += parseFloat(el.textContent) || 0;
-    });
-    const te = document.getElementById("totalExperience"); if (te) te.value = total.toFixed(1);
+  let total = 0;
+  document.querySelectorAll("#experiencePreview .yearVal").forEach(el => {
+    total += parseFloat(el.textContent) || 0;
+  });
+  const te = document.getElementById("totalExperience");
+  if (te) te.value = total.toFixed(1);
 }
 
+// Add Example
+function addExperience() {
+  const company = document.getElementById("previouscompany").value.trim();
+  const office = document.getElementById("companyoffice").value.trim();
+  const designation = document.getElementById("designation").value.trim();
+  const projectname = document.getElementById("projectname").value.trim();
+  const projectlocation = document.getElementById("projectlocation").value.trim();
+  const projectvalue = document.getElementById("projectvalue").value.trim();
+  const role = document.getElementById("role").value.trim();
+  const frommonth = document.getElementById("frommonth").value;
+  const tomonth = document.getElementById("tomonth").value;
 
+  if (!company || !role || !frommonth || !tomonth) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  // experience calc
+  const from = new Date(frommonth);
+  const to = new Date(tomonth);
+  let expYears = (to - from) / (1000 * 60 * 60 * 24 * 365);
+  expYears = expYears.toFixed(1);
+
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <b>${company}</b> (${office})<br>
+    Designation: ${designation}<br>
+    Project: ${projectname} - ${projectlocation}<br>
+    Value: ${projectvalue}<br>
+    Role: ${role}<br>
+    From: ${frommonth} → To: ${tomonth}<br>
+    Experience: <span class="yearVal">${expYears}</span> yrs
+    <button type="button" onclick="removeExperience(this)">❌</button>
+  `;
+
+  document.getElementById("experiencePreview").appendChild(li);
  
+
+  // ✅ total update
+  calculateTotalExperience();
+
+  // ✅ Reset all input fields (KADASIYILA podanum)
+  document.getElementById("previouscompany").value = "";
+  document.getElementById("companyoffice").value = "";
+  document.getElementById("designation").value = "";
+  document.getElementById("projectname").value = "";
+  document.getElementById("projectlocation").value = "";
+  document.getElementById("projectvalue").value = "";
+  document.getElementById("role").value = "";
+  document.getElementById("frommonth").value = "";
+  document.getElementById("tomonth").value = "";
+}
+
+  // ✅ total update
+  calculateTotalExperience();
+
+
+function removeExperience(btn) {
+  btn.parentElement.remove();
+  calculateTotalExperience();
+}
+
   // Show/Hide Other Language - Speak
   // moved into DOMContentLoaded to avoid null errors
 
@@ -858,17 +1022,33 @@ function addFamilyPreview() {
   const container = document.getElementById("familyPreviewContainer");
   const line = document.createElement("div");
   line.className = "edu-preview-line";
-  line.innerHTML = `\n    <strong>${familyCount}.</strong> ${escapeHtml(name)}, ${escapeHtml(age)} yrs, ${escapeHtml(rel)}, ${escapeHtml(occ)}, ${escapeHtml(marital)}, ${escapeHtml(loc)}, 📞 ${escapeHtml(ph)}\n    <button type="button" onclick="this.parentElement.remove(); renumberFamily()">❌</button>\n  `;
+  line.innerHTML = `\n    <strong>${familyCount}.</strong> ${escapeHtml(rel)},${escapeHtml(name)}, ${escapeHtml(age)} yrs,  ${escapeHtml(occ)}, ${escapeHtml(marital)}, ${escapeHtml(loc)}, 📞 ${escapeHtml(ph)}\n    <button type="button" onclick="this.parentElement.remove(); renumberFamily()">❌</button>\n  `;
   container.appendChild(line);
 
+ document.getElementById("frel").value = "";
   document.getElementById("fname").value = "";
   document.getElementById("fage").value = "";
-  document.getElementById("frel").value = "";
-  document.getElementById("focc").value = "";
+ document.getElementById("focc").value = "";
   document.getElementById("fmarital").value = "";
   document.getElementById("floc").value = "";
   document.getElementById("fph").value = "";
 }
+async function fileToBase64(file) {
+
+  return new Promise((resolve, reject) => {
+
+    const reader = new FileReader();
+
+    reader.onload = () => resolve(reader.result.split(',')[1]); // Remove data:*/*;base64, part
+
+    reader.onerror = error => reject(error);
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
 
 function renumberFamily() {
   const lines = document.querySelectorAll('#familyPreviewContainer .edu-preview-line');
@@ -941,22 +1121,35 @@ function renumberSkills() {
 // Reference Preview
 let refCount = 1;
 
-function addReference() {
-  const refs = document.querySelectorAll('textarea[name="reference[]"]');
-  if (!refs || refs.length === 0) return;
-  const lastRef = refs[refs.length - 1];
-  if (!lastRef.value.trim()) {
-    alert("Please fill in the previous reference before adding another.");
-    return;
-  }
 
-  const refText = lastRef.value.trim();
+function addReference() {
+  const row = document.querySelector(".referenceRow");
+  if (!row) return;
+
+  // Get values
+  const name = row.querySelector('textarea[name="ref_name[]"]').value.trim();
+  const company = row.querySelector('textarea[name="ref_company[]"]').value.trim();
+  const designation = row.querySelector('textarea[name="ref_designation[]"]').value.trim();
+  const contact = row.querySelector('textarea[name="ref_contact[]"]').value.trim();
+
+
+
+  // Create preview block
   const preview = document.createElement("div");
-  preview.innerHTML = `<strong>${refCount}.</strong> ${escapeHtml(refText)} <button type="button" onclick="this.parentElement.remove(); reindexReferences()">❌</button>`;
+  preview.innerHTML = `
+    <strong>${refCount}.</strong> 
+   ${escapeHtml(name)} | 
+   ${escapeHtml(company)} | 
+    ${escapeHtml(designation)} | 
+     ${escapeHtml(contact)}
+    <button type="button" onclick="this.parentElement.remove(); reindexReferences()">❌</button>
+  `;
   document.getElementById("referencePreview").appendChild(preview);
 
   refCount++;
-  lastRef.value = "";
+
+  // Reset fields after adding
+  row.querySelectorAll("textarea").forEach(el => el.value = "");
 }
 
 function reindexReferences() {
@@ -1025,86 +1218,98 @@ const candidateFormEl = document.getElementById("candidateForm");
 if (candidateFormEl) candidateFormEl.addEventListener("submit", submitCandidateForm);
 
 async function submitCandidateForm(event) {
-    event.preventDefault();
 
-    const form = document.getElementById("candidateForm");
-    if (!form) return;
-    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+  event.preventDefault();
+  const form = document.getElementById("candidateForm");
+  if (!form) return;
+  const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+  // prevent double submit
 
-    // prevent double submit
-    if (submitBtn) { submitBtn.disabled = true; }
+  if (submitBtn) { submitBtn.disabled = true; }
+  // Show loading overlay
 
-    // Show loading overlay
-    document.getElementById("loadingOverlay").style.display = "flex";
+  document.getElementById("loadingOverlay").style.display = "flex";
+  try {
 
-    // Helper to get checked values for checkboxes by name
-    function getCheckedValues(name) {
-        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
-            .map(el => el.value);
+    // Prepare FormData from form fields (excluding files)
+
+    const formData = new FormData(form);
+    // Convert Aadhar and Resume files to base64 and append as fields
+    const aadharFile = document.getElementById("aadhar_upload").files[0];
+    const resumeFile = document.getElementById("resume_upload").files[0];
+    if (aadharFile) {
+      const base64Aadhar = await fileToBase64(aadharFile);
+      formData.append("aadhar_base64", base64Aadhar);
+      formData.append("aadhar_name", aadharFile.name);
+      formData.append("aadhar_type", aadharFile.type);
+    }
+    if (resumeFile) {
+      const base64Resume = await fileToBase64(resumeFile);
+     formData.append("resume_base64", base64Resume);
+      formData.append("resume_name", resumeFile.name);
+      formData.append("resume_type", resumeFile.type);
     }
 
-    // Get selected languages speak
+    // Append dynamic sections (languages etc)
+    function getCheckedValues(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+        .map(el => el.value);
+    }
     let selectedSpeak = getCheckedValues("languageSpeak");
     const otherSpeakInput = document.getElementById("otherSpeak");
     const otherSpeakChecked = document.getElementById("langSpeakOthersChk")?.checked;
     if (otherSpeakChecked && otherSpeakInput?.value.trim() !== "") {
-        selectedSpeak.push(otherSpeakInput.value.trim());
+      selectedSpeak.push(otherSpeakInput.value.trim());
     }
-    const languageSpeakCombined = selectedSpeak.join(", ");
-
-    // Get selected languages write
+    formData.append("languageSpeakCombined", selectedSpeak.join(", "));
     let selectedWrite = getCheckedValues("languageWrite");
     const otherWriteInput = document.getElementById("otherWrite");
     const otherWriteChecked = document.getElementById("langWriteOthersChk")?.checked;
     if (otherWriteChecked && otherWriteInput?.value.trim() !== "") {
-        selectedWrite.push(otherWriteInput.value.trim());
+      selectedWrite.push(otherWriteInput.value.trim());
     }
-    const languageWriteCombined = selectedWrite.join(", ");
-
-    const formData = new FormData(form);
-
-    // Append dynamic sections
-    formData.append("languageSpeakCombined", languageSpeakCombined);
-    formData.append("languageWriteCombined", languageWriteCombined);
+    formData.append("languageWriteCombined", selectedWrite.join(", "));
+    // Append JSON stringified dynamic preview data
     formData.append("educationData", JSON.stringify(collectPreviewData("#educationPreviewContainer")));
     formData.append("experienceData", JSON.stringify(collectPreviewData("#experiencePreview")));
     formData.append("familyData", JSON.stringify(collectPreviewData("#familyPreviewContainer")));
     formData.append("skillsData", JSON.stringify(collectPreviewData("#skillPreviewContainer")));
     formData.append("referencesData", JSON.stringify(collectPreviewData("#referencePreview")));
-
     // Append conditional fields
     formData.append("marriageYear", document.getElementById("marriage_year")?.value || "");
     formData.append("healthProblemDetails", document.getElementById("health_problem_details")?.value || "");
     formData.append("physicallyChallengedDetails", document.getElementById("physically_challenged_details")?.value || "");
     formData.append("relativeType", document.getElementById("relative_type")?.value || "");
+    // Send to Google Apps Script endpoint
 
-    try {
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbx_eKo-M4n9w08UJcE6nwriHTslh395nkeJUnz25oo0nmEgY7MynIb_9LRJt4h-s7zyhg/exec";
-
-        const response = await fetch(GAS_URL, {
-            method: "POST",
-            body: formData
-        });
-
-        const data = await response.json();
-        alert(data.message || "Form submitted successfully!");
-
-        if (data.result === "success") {
-            form.reset();
-            document.querySelectorAll(".preview-container").forEach(c => c.innerHTML = "");
-            educationCount = familyCount = skillCount = 0;
-            refCount = 1;
-        }
-    } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("Error submitting form. Please try again.");
-    } finally {
-        // Hide loading overlay
-        document.getElementById("loadingOverlay").style.display = "none";
-        if (submitBtn) { submitBtn.disabled = false; }
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbx3PhqA-dxr3nehoG3CNmXtihe3mFFp-WdP9up690ctXjdFdVP7_SXgcr8sDgvFZNEHxA/exec";
+    const response = await fetch(GAS_URL, {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    alert(data.message || "Form submitted successfully!");
+    if (data.result === "success") {
+      form.reset();
+      // Clear previews and counters as in your original code
+      document.getElementById("educationPreviewContainer").innerHTML = "";
+      document.getElementById("familyPreviewContainer").innerHTML = "";
+      document.getElementById("skillPreviewContainer").innerHTML = "";
+     document.getElementById("referencePreview").innerHTML = "";
+      document.getElementById("experiencePreview").innerHTML = "";
+      document.getElementById("totalExperience").value = "";
+      educationCount = familyCount = skillCount = 0;
+      refCount = 1;
     }
-}
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Error submitting form. Please try again.");
+  } finally {
+    document.getElementById("loadingOverlay").style.display = "none";
+    if (submitBtn) { submitBtn.disabled = false; }
+  }
 
+}
 // Helper: Collect preview data
 function collectPreviewData(containerSelector) {
     const container = document.querySelector(containerSelector);
@@ -1140,5 +1345,3 @@ function escapeHtml(unsafe) {
 
 </body>
 </html>
-
-
